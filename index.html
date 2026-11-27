@@ -17,14 +17,6 @@ body{display:grid;place-items:center;min-height:100svh;padding:18px}
 .device{position:absolute;width:77%;height:84%;left:11.5%;top:8.1%;filter:drop-shadow(0 13px 12px #0002)}
 .silhouette{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 .silhouette path{fill:var(--panel)}
-.drip{transform-box:fill-box;transform-origin:50% 0%;will-change:transform}
-.drip-one{animation:drip-sway 4.8s ease-in-out infinite}
-.drip-two{animation:drip-stretch 5.6s ease-in-out infinite}
-.drip-three{animation:drip-sway 4.2s ease-in-out -1.4s infinite}
-.drip-four{animation:drip-stretch 5.1s ease-in-out -2s infinite}
-@keyframes drip-sway{0%,100%{transform:scaleY(1) translateY(0)}50%{transform:scaleY(1.035) translateY(3px)}}
-@keyframes drip-stretch{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.045) translateY(4px)}}
-@media(prefers-reduced-motion:reduce){.drip{animation:none}}
 .player-content{position:absolute;left:6.5%;right:6.5%;top:3.4%;height:72%;color:var(--white);display:flex;flex-direction:column}
 .artwork{width:100%;aspect-ratio:1;object-fit:cover;border-radius:8%;display:block;background:#111}
 .track{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:5.4%}
@@ -49,11 +41,7 @@ body{display:grid;place-items:center;min-height:100svh;padding:18px}
 <main class="stage" aria-label="Template konten Instagram N13 format 9 banding 16">
   <section class="device" aria-label="Ilustrasi pemutar musik dengan bentuk lelehan">
     <svg class="silhouette" viewBox="0 0 700 1350" preserveAspectRatio="none" aria-hidden="true">
-      <path class="body-shape" d="M86 12 Q20 12 20 80 L20 1015 Q20 1080 80 1090 Q100 1098 120 1098 L580 1098 Q620 1098 640 1080 Q680 1055 680 1010 L680 80 Q680 12 614 12 Z"/>
-      <path class="drip drip-one" d="M112 1080 Q145 1080 145 1120 L145 1218 Q145 1260 170 1260 Q196 1260 196 1218 L196 1120 Q196 1080 230 1080 Z"/>
-      <path class="drip drip-two" d="M270 1080 Q300 1080 300 1125 L300 1310 Q300 1340 326 1340 Q352 1340 352 1310 L352 1125 Q352 1080 382 1080 Z"/>
-      <path class="drip drip-three" d="M405 1080 Q420 1080 420 1120 Q420 1210 450 1210 Q475 1210 475 1175 L475 1120 Q475 1080 505 1080 Z"/>
-      <path class="drip drip-four" d="M510 1080 Q540 1080 540 1125 L540 1240 Q540 1280 565 1280 Q590 1280 590 1240 L590 1125 Q590 1080 620 1080 Z"/>
+      <path d="M86 12 Q20 12 20 80 L20 1015 Q20 1080 80 1090 C130 1098 145 1120 145 1170 L145 1218 Q145 1260 170 1260 Q196 1260 196 1218 L196 1170 Q196 1125 235 1125 Q280 1125 300 1170 L300 1310 Q300 1340 326 1340 Q352 1340 352 1310 L352 1190 Q352 1145 385 1145 Q415 1145 420 1180 Q425 1210 450 1210 Q475 1210 475 1175 Q475 1140 505 1140 Q540 1140 540 1185 L540 1240 Q540 1280 565 1280 Q590 1280 590 1240 L590 1170 Q590 1110 630 1090 Q680 1070 680 1010 L680 80 Q680 12 614 12 Z"/>
     </svg>
     <div class="player-content">
       <img class="artwork" src="badai-kehidupan.webp" alt="Artwork album Badai Kehidupan N13">
