@@ -37,6 +37,10 @@ body{display:grid;place-items:center;min-height:100svh;padding:18px}
 .play{width:clamp(58px,14vw,86px);height:clamp(58px,14vw,86px);border-radius:50%;background:#f0f0f0;color:#292929;display:grid;place-items:center;font-size:clamp(31px,7vw,43px);font-weight:400;box-shadow:0 5px 11px #0006,0 1px 2px #fff8}
 .brand{position:absolute;bottom:3.1%;left:0;right:0;text-align:center;color:#777;font-size:clamp(9px,2vw,12px);letter-spacing:.28em;font-weight:700;text-shadow:0 1px 1px #fff8}
 @media(max-width:420px){body{padding:0}.stage{width:100vw}}
+.ss-button{position:fixed;z-index:10;left:50%;bottom:18px;transform:translateX(-50%);display:flex;align-items:center;gap:9px;padding:13px 22px;border:0;border-radius:999px;background:#f2f2f2;color:#171717;font-size:14px;font-weight:700;box-shadow:0 5px 18px #0005;cursor:pointer;white-space:nowrap}
+.ss-button:disabled{opacity:.65;cursor:wait}
+.ss-button .material-symbols-rounded{font-size:20px}
+@media(max-width:420px){.ss-button{bottom:14px}}
 </style>
 </head>
 <body>
@@ -64,6 +68,11 @@ body{display:grid;place-items:center;min-height:100svh;padding:18px}
   </section>
   <div class="brand">N13 · BADAI KEHIDUPAN</div>
 </main>
+<button class="ss-button" id="saveImage" type="button">
+  <span class="material-symbols-rounded" aria-hidden="true">photo_camera</span>
+  <span id="saveLabel">SS 1080p</span>
+</button>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <script>
 (() => {
   const seek = document.getElementById('seek');
@@ -90,6 +99,66 @@ body{display:grid;place-items:center;min-height:100svh;padding:18px}
 
   seek.addEventListener('input', updateSeek);
   updateSeek();
+
+  const saveButton = document.getElementById('saveImage');
+  const saveLabel = document.getElementById('saveLabel');
+  const stage = document.querySelector('.stage');
+
+  saveButton.addEventListener('click', async () => {
+    if (typeof html2canvas === 'undefined') {
+      alert('Fitur screenshot belum termuat. Periksa koneksi internet lalu coba lagi.');
+      return;
+    }
+
+    const originalLabel = saveLabel.textContent;
+    saveButton.disabled = true;
+    saveLabel.textContent = 'Menyiapkan gambar...';
+
+    try {
+      if (document.fonts && document.fonts.ready) await document.fonts.ready;
+      const artwork = document.querySelector('.artwork');
+      if (artwork && !artwork.complete) {
+        await new Promise((resolve) => {
+          artwork.onload = resolve;
+          artwork.onerror = resolve;
+        });
+      }
+
+      const rect = stage.getBoundingClientRect();
+      const scale = 1080 / rect.width;
+      const canvas = await html2canvas(stage, {
+        scale,
+        width: rect.width,
+        height: rect.height,
+        backgroundColor: '#dedddd',
+        useCORS: true,
+        logging: false
+      });
+
+      const output = document.createElement('canvas');
+      output.width = 1080;
+      output.height = 1920;
+      const context = output.getContext('2d');
+      context.imageSmoothingEnabled = true;
+      context.imageSmoothingQuality = 'high';
+      context.drawImage(canvas, 0, 0, 1080, 1920);
+
+      const link = document.createElement('a');
+      link.download = 'N13-Badai-Kehidupan-1080x1920.png';
+      link.href = output.toDataURL('image/png');
+      link.click();
+      saveLabel.textContent = 'Tersimpan';
+    } catch (error) {
+      console.error('Gagal membuat screenshot:', error);
+      alert('Gagal membuat gambar. Coba muat ulang halaman dan pastikan koneksi internet aktif.');
+      saveLabel.textContent = originalLabel;
+    } finally {
+      saveButton.disabled = false;
+      if (saveLabel.textContent === 'Tersimpan') {
+        setTimeout(() => { saveLabel.textContent = originalLabel; }, 1800);
+      }
+    }
+  });
 })();
 </script>
 </body>
