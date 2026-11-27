@@ -2,87 +2,65 @@
 <html lang="id">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#090d12">
-<title>N13 — Badai Kehidupan | Music Player</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#dedddd">
+<title>N13 — Badai Kehidupan | Instagram Visual</title>
 <style>
-:root{color-scheme:dark;--accent:#d6b18a;--white:#f5f3ef}
+:root{--bg:#dedddd;--panel:#292929;--white:#f2f2f2;--muted:#b9b9b9}
 *{box-sizing:border-box}
-html,body{margin:0;min-height:100%;background:#080b10;color:var(--white);font-family:Inter,Arial,Helvetica,sans-serif}
-body{min-height:100svh;display:grid;place-items:center;padding:18px}
-.story{width:min(100%,540px);aspect-ratio:9/16;max-height:calc(100svh - 36px);position:relative;overflow:hidden;border-radius:28px;background:radial-gradient(ellipse at 50% 20%,#293a46 0%,#17232e 35%,#0d141c 72%,#090d12 100%);padding:7.2% 8%;display:flex;flex-direction:column;box-shadow:0 25px 90px #0009}
-.story:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.12;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E")}
-.top,.art-wrap,.track-info,.controls,.queue,.footer{position:relative;z-index:1}
-.top{display:flex;justify-content:space-between;align-items:center;font-size:clamp(10px,2vw,13px);font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:#e9e6e0}
-.status{display:flex;align-items:center;gap:8px;color:#aab5bd;font-size:.78em;letter-spacing:.13em}
-.dot{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px #d6b18a}
-.art-wrap{width:100%;margin:9% auto 7%;max-width:390px;aspect-ratio:1;position:relative;border-radius:18px;overflow:hidden;background:linear-gradient(145deg,#3e5967,#172c39 58%,#0e1720);box-shadow:0 20px 48px #0007}
-.art-wrap img{width:100%;height:100%;object-fit:cover;display:block}
-.art-fallback{display:none;position:absolute;inset:0;place-items:center;text-align:center;padding:12%;background:linear-gradient(145deg,#435b65,#172c39 60%,#0b131b)}
-.art-fallback b{font-size:clamp(32px,8vw,54px);line-height:.88;letter-spacing:-.07em;text-transform:uppercase}
-.art-fallback span{display:block;margin-top:14px;font-size:10px;letter-spacing:.3em;color:#e2c6a8}
-.track-info{margin-top:1%;display:flex;align-items:flex-start;justify-content:space-between;gap:14px}
-.track-info h1{font-size:clamp(25px,6vw,36px);line-height:1.05;letter-spacing:-.045em;margin:0;font-weight:800}
-.artist{margin:8px 0 0;color:#aeb9c2;font-size:clamp(12px,2.6vw,15px);letter-spacing:.04em}
-.heart{font-size:25px;color:var(--accent);line-height:1;padding:3px}
-.progress{margin-top:8%}
-input[type=range]{width:100%;height:3px;appearance:none;background:linear-gradient(to right,var(--accent) 38%,#64717c 38%);border-radius:9px;outline:none}
-input[type=range]::-webkit-slider-thumb{appearance:none;width:11px;height:11px;border-radius:50%;background:#f5e7d6}
-.times{display:flex;justify-content:space-between;color:#9ca8b2;font-size:10px;margin-top:9px;font-variant-numeric:tabular-nums}
-.controls{display:flex;align-items:center;justify-content:space-between;margin:7% 4% 8%}
-.control{border:0;background:none;color:#e9edf0;font-size:clamp(22px,5vw,29px);padding:8px;line-height:1;cursor:pointer}
-.control.secondary{font-size:19px;color:#a9b4bd}
-.play{width:62px;height:62px;border-radius:50%;background:var(--white);color:#111820;font-size:24px;display:grid;place-items:center;padding-left:4px;box-shadow:0 8px 28px #0005}
-.queue{border-top:1px solid #ffffff24;padding-top:5.5%;margin-top:auto}
-.queue-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:13px}
-.queue-head strong{font-size:11px;letter-spacing:.18em;text-transform:uppercase}
-.queue-head span{font-size:10px;color:#a4afb8}
-.queue-row{display:flex;align-items:center;gap:12px;padding:8px 0}
-.queue-num{width:20px;color:#8c99a4;font-size:11px;font-variant-numeric:tabular-nums}
-.queue-title{font-size:12px;font-weight:650;letter-spacing:.01em}
-.queue-sub{font-size:10px;color:#8996a1;margin-top:3px}
-.queue-current{color:var(--accent)}
-.queue-row .duration{margin-left:auto;font-size:10px;color:#8c99a4}
-.footer{margin-top:5%;display:flex;justify-content:space-between;color:#7f8b95;font-size:9px;letter-spacing:.17em;text-transform:uppercase}
-@media(max-width:480px){body{padding:0;background:#090d12}.story{width:100vw;height:100svh;max-height:none;aspect-ratio:auto;border-radius:0;padding:7.5% 8% 6%}.art-wrap{margin:8% auto 6%;width:min(100%,39svh)}.progress{margin-top:7%}.controls{margin:6% 4%}.queue{padding-top:4%}}
-@media(max-height:700px) and (min-width:481px){.story{padding-top:4%;padding-bottom:4%}.art-wrap{width:min(60%,32vh);margin:4% auto}.progress{margin-top:4%}.controls{margin:4% 4%}.queue{padding-top:3%}}
+html,body{margin:0;min-height:100%;font-family:Arial,Helvetica,sans-serif;background:#171717}
+body{display:grid;place-items:center;min-height:100svh;padding:18px}
+.stage{width:min(100%,540px);aspect-ratio:9/16;position:relative;overflow:hidden;background:var(--bg);isolation:isolate}
+.device{position:absolute;width:77%;height:84%;left:11.5%;top:8.1%;filter:drop-shadow(0 13px 12px #0002)}
+.silhouette{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.silhouette path{fill:var(--panel)}
+.player-content{position:absolute;left:6.5%;right:6.5%;top:3.4%;height:72%;color:var(--white);display:flex;flex-direction:column}
+.artwork{width:100%;aspect-ratio:1;object-fit:cover;border-radius:8%;display:block;background:#111}
+.track{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:5.4%}
+.track-copy{min-width:0}
+.track h1{font-size:clamp(17px,4.1vw,29px);font-weight:700;line-height:1.1;margin:0;letter-spacing:-.035em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.artist{font-size:clamp(13px,2.8vw,20px);color:var(--muted);margin:7px 0 0}
+.heart{font-size:clamp(23px,5vw,34px);font-weight:300;line-height:1;color:#ddd;margin-right:1%}
+.progress{margin-top:8.5%}
+.trackbar{height:5px;background:#696969;border-radius:10px;position:relative}
+.trackbar:before{content:"";position:absolute;left:0;top:0;bottom:0;width:32%;background:#eee;border-radius:10px}
+.trackbar:after{content:"";position:absolute;left:32%;top:50%;width:15px;height:15px;background:#eee;border-radius:50%;transform:translate(-50%,-50%)}
+.times{display:flex;justify-content:space-between;margin-top:11px;font-size:clamp(10px,2.3vw,15px);color:#ddd}
+.controls{display:flex;align-items:center;justify-content:space-between;margin-top:5.5%;height:15%;color:#e9e9e9}
+.ctrl{font-size:clamp(19px,4.6vw,31px);line-height:1;white-space:nowrap}
+.ctrl.small{font-size:clamp(18px,4vw,26px);color:#c7c7c7}
+.play{width:clamp(58px,14vw,86px);height:clamp(58px,14vw,86px);border-radius:50%;background:#f0f0f0;color:#292929;display:grid;place-items:center;font-size:clamp(24px,5.5vw,38px);font-weight:700;padding-left:4px}
+.volume{display:flex;align-items:center;gap:12px;margin:5.5% 1% 0;color:#bdbdbd;font-size:clamp(14px,3vw,21px)}
+.volume-line{height:4px;background:#777;border-radius:9px;flex:1;position:relative}
+.volume-line:before{content:"";position:absolute;left:0;top:0;bottom:0;width:80%;background:#eee;border-radius:9px}
+.volume-line:after{content:"";position:absolute;left:80%;top:50%;width:17px;height:17px;border-radius:50%;background:#eee;transform:translate(-50%,-50%)}
+.brand{position:absolute;bottom:3.1%;left:0;right:0;text-align:center;color:#777;font-size:clamp(9px,2vw,12px);letter-spacing:.28em;font-weight:700}
+@media(max-width:420px){body{padding:0}.stage{width:100vw}}
 </style>
 </head>
 <body>
-<main class="story" aria-label="Konten Instagram N13 dengan tampilan pemutar musik">
-<header class="top"><span>N13</span><span class="status"><i class="dot"></i> NOW PLAYING</span></header>
-<div class="art-wrap">
-  <img src="badai-kehidupan.webp" alt="Artwork album Badai Kehidupan" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
-  <div class="art-fallback"><div><b>BADAI<br>KEHIDUPAN</b><span>N13 · ALBUM</span></div></div>
-</div>
-<section class="track-info">
-  <div><h1>Pagi yang Berat</h1><p class="artist">N13 · Badai Kehidupan</p></div>
-  <span class="heart" aria-hidden="true">♡</span>
-</section>
-<section class="progress" aria-label="Progress visual lagu">
-  <input id="seek" type="range" min="0" max="100" value="38" aria-label="Posisi progress visual">
-  <div class="times"><span>1:24</span><span>3:42</span></div>
-</section>
-<nav class="controls" aria-label="Kontrol tampilan">
-  <button class="control secondary" aria-label="Mode acak">⤨</button>
-  <button class="control" aria-label="Lagu sebelumnya">Ⅱ◀</button>
-  <button class="control play" id="play" aria-label="Ubah tampilan putar atau jeda">Ⅱ</button>
-  <button class="control" aria-label="Lagu berikutnya">▶Ⅱ</button>
-  <button class="control secondary" aria-label="Ulangi">↻</button>
-</nav>
-<section class="queue">
-  <div class="queue-head"><strong>Dalam album ini</strong><span>12 TRACKS</span></div>
-  <div class="queue-row"><span class="queue-num queue-current">01</span><div><div class="queue-title queue-current">Pagi yang Berat</div><div class="queue-sub">Track terpilih</div></div><span class="duration">3:42</span></div>
-  <div class="queue-row"><span class="queue-num">02</span><div><div class="queue-title">Track 02</div><div class="queue-sub">Badai Kehidupan</div></div><span class="duration">--:--</span></div>
-  <div class="queue-row"><span class="queue-num">03</span><div><div class="queue-title">Track 03</div><div class="queue-sub">Badai Kehidupan</div></div><span class="duration">--:--</span></div>
-</section>
-<footer class="footer"><span>N13 · ORIGINAL ALBUM</span><span>BADAI KEHIDUPAN</span></footer>
+<main class="stage" aria-label="Template konten Instagram N13 format 9 banding 16">
+  <section class="device" aria-label="Ilustrasi pemutar musik dengan bentuk lelehan">
+    <svg class="silhouette" viewBox="0 0 700 1350" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M86 12 Q20 12 20 80 L20 1015 Q20 1080 80 1090 C130 1098 145 1120 145 1170 L145 1218 Q145 1260 170 1260 Q196 1260 196 1218 L196 1170 Q196 1125 235 1125 Q280 1125 300 1170 L300 1310 Q300 1340 326 1340 Q352 1340 352 1310 L352 1190 Q352 1145 385 1145 Q415 1145 420 1180 Q425 1210 450 1210 Q475 1210 475 1175 Q475 1140 505 1140 Q540 1140 540 1185 L540 1240 Q540 1280 565 1280 Q590 1280 590 1240 L590 1170 Q590 1110 630 1090 Q680 1070 680 1010 L680 80 Q680 12 614 12 Z"/>
+    </svg>
+    <div class="player-content">
+      <img class="artwork" src="badai-kehidupan.webp" alt="Artwork album Badai Kehidupan N13">
+      <div class="track">
+        <div class="track-copy"><h1>Pagi yang Berat</h1><p class="artist">N13</p></div>
+        <span class="heart" aria-hidden="true">♡</span>
+      </div>
+      <div class="progress">
+        <div class="trackbar"></div>
+        <div class="times"><span>1:27</span><span>-3:22</span></div>
+      </div>
+      <div class="controls" aria-hidden="true">
+        <span class="ctrl small">⤨</span><span class="ctrl">◀❙</span><span class="play">Ⅱ</span><span class="ctrl">❙▶</span><span class="ctrl small">↻</span>
+      </div>
+      <div class="volume" aria-hidden="true"><span>◀</span><div class="volume-line"></div><span>◖))</span></div>
+    </div>
+  </section>
+  <div class="brand">N13 · BADAI KEHIDUPAN</div>
 </main>
-<script>
-const play=document.getElementById('play');
-play.addEventListener('click',()=>{const paused=play.textContent.trim()==='▶';play.textContent=paused?'Ⅱ':'▶';play.setAttribute('aria-label',paused?'Tampilan jeda':'Tampilan putar');});
-const seek=document.getElementById('seek');
-seek.addEventListener('input',()=>{const v=Number(seek.value);seek.style.background='linear-gradient(to right,var(--accent) '+v+'%,#64717c '+v+'%)';});
-</script>
 </body>
 </html>
