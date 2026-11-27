@@ -30,10 +30,6 @@ body{display:grid;place-items:center;min-height:100svh;padding:18px}
 .ctrl{font-size:clamp(19px,4.6vw,31px);line-height:1;white-space:nowrap}
 .ctrl.small{font-size:clamp(18px,4vw,26px);color:#c7c7c7}
 .play{width:clamp(58px,14vw,86px);height:clamp(58px,14vw,86px);border-radius:50%;background:#f0f0f0;color:#292929;display:grid;place-items:center;font-size:clamp(24px,5.5vw,38px);font-weight:700;padding-left:4px}
-.volume{display:flex;align-items:center;gap:12px;margin:5.5% 1% 0;color:#bdbdbd;font-size:clamp(14px,3vw,21px)}
-.volume-line{height:4px;background:#777;border-radius:9px;flex:1;position:relative}
-.volume-line:before{content:"";position:absolute;left:0;top:0;bottom:0;width:80%;background:#eee;border-radius:9px}
-.volume-line:after{content:"";position:absolute;left:80%;top:50%;width:17px;height:17px;border-radius:50%;background:#eee;transform:translate(-50%,-50%)}
 .brand{position:absolute;bottom:3.1%;left:0;right:0;text-align:center;color:#777;font-size:clamp(9px,2vw,12px);letter-spacing:.28em;font-weight:700}
 @media(max-width:420px){body{padding:0}.stage{width:100vw}}
 </style>
@@ -57,7 +53,6 @@ body{display:grid;place-items:center;min-height:100svh;padding:18px}
       <div class="controls" aria-hidden="true">
         <span class="ctrl small">⤨</span><span class="ctrl">◀❙</span><span class="play">Ⅱ</span><span class="ctrl">❙▶</span><span class="ctrl small">↻</span>
       </div>
-      <div class="volume" aria-hidden="true"><span>◀</span><div class="volume-line"></div><span>◖))</span></div>
     </div>
   </section>
   <div class="brand">N13 · BADAI KEHIDUPAN</div>
