@@ -21,7 +21,7 @@ body{display:grid;place-items:center;min-height:100svh;padding:18px}
 .artwork{width:100%;aspect-ratio:1;object-fit:cover;border-radius:8%;display:block;background:#111;box-shadow:0 8px 17px #0005,0 2px 4px #0004}
 .track{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:5.4%}
 .track-copy{min-width:0}
-.track h1{font-size:clamp(17px,4.1vw,29px);font-weight:700;line-height:1.1;margin:0;letter-spacing:-.035em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 2px 5px #0005}
+.track h1{cursor:text;outline:none;border-radius:3px}.track h1:focus{box-shadow:0 2px 0 #ffffff99}.track h1{font-size:clamp(17px,4.1vw,29px);font-weight:700;line-height:1.1;margin:0;letter-spacing:-.035em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-shadow:0 2px 5px #0005}
 .artist{font-size:clamp(13px,2.8vw,20px);color:var(--muted);margin:7px 0 0;text-shadow:0 1px 3px #0005}
 .material-symbols-rounded{font-family:"Material Symbols Rounded";font-weight:normal;font-style:normal;font-size:clamp(22px,5vw,32px);line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;direction:ltr;font-feature-settings:"liga";-webkit-font-feature-settings:"liga";-webkit-font-smoothing:antialiased;user-select:none}.heart{color:#ddd;margin-right:1%;font-size:clamp(24px,5vw,34px);filter:drop-shadow(0 2px 3px #0008)}
 .progress{margin-top:8.5%}
@@ -52,7 +52,7 @@ body{display:grid;place-items:center;min-height:100svh;padding:18px}
     <div class="player-content">
       <img class="artwork" src="badai-kehidupan.webp" alt="Artwork album Badai Kehidupan N13">
       <div class="track">
-        <div class="track-copy"><h1>Pagi yang Berat</h1><p class="artist">N13</p></div>
+        <div class="track-copy"><h1 contenteditable="true" spellcheck="false" role="textbox" aria-label="Edit judul lagu" title="Ketuk untuk mengubah judul">Pagi yang Berat</h1><p class="artist">N13</p></div>
         <span class="material-symbols-rounded heart" aria-hidden="true">favorite_border</span>
       </div>
       <div class="progress">
